@@ -12,6 +12,8 @@ m = length(y); % number of training examples
 J = 0;
 grad = zeros(size(theta));
 
+% number of features.
+p = size(X, 2);
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
 %               You should set J to the cost.
@@ -36,8 +38,21 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+transpose_theta = transpose(theta);
+h_theta = sigmoid(transpose(theta)*transpose(X));
+int_val = -y.* transpose(log(h_theta)) - (1-y).* transpose(log(1-h_theta));
 
+delta = (lambda/(2*m))*(sum(transpose(theta)*theta));
 
+m = length(y);
+J = (sum(int_val))/(m) + delta - (lambda/(2*m))*(theta(1)^2) ;
+
+grad(1)  = sum(((h_theta - transpose(y))*X(:, 1))/m);
+% compute the derivative vector
+for j = 2:p
+
+		grad(j)  = (sum(((h_theta - transpose(y))*X(:, j))/m)) + ((lambda/m)*theta(j));
+end
 
 
 
