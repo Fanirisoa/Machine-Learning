@@ -63,6 +63,22 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+anspose_theta = transpose(Theta1);
+a_2= sigmoid(transpose(Theta1)*transpose(X));
+a_3= sigmoid(transpose(Theta2)*transpose(a_2));
+
+h_theta = a_3
+
+int_val = -y.* transpose(log(h_theta)) - (1-y).* transpose(log(1-h_theta));
+
+
+fprintf(['Cost at parameters (loaded from ex4weights): %f '...
+         '\n(this value int_val)\n'], int_val);
+
+m = length(y);
+J = (sum(int_val))/(m);
+
+
 
 
 
