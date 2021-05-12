@@ -64,8 +64,8 @@ Theta2_grad = zeros(size(Theta2));
 
 
 anspose_theta = transpose(Theta1);
-a_2= sigmoid(transpose(Theta1)*transpose(X));
-a_3= sigmoid(transpose(Theta2)*transpose(a_2));
+a_2= sigmoid(Theta1*transpose(X));
+a_3= sigmoid(Theta2*transpose(a_2));
 
 h_theta = a_3
 
