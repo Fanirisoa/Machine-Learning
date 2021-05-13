@@ -62,40 +62,42 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% recode y to Y
+I = eye(num_labels);
+Y = zeros(m, num_labels);
+for i=1:m
+  Y(i, :)= I(y(i), :);
+end
 
 
 a_1 = [ones(m, 1) X];
 z_2 = transpose(Theta1*transpose(a_1));
-
-
 a_2 = [ones(size(z_2, 1), 1) sigmoid(z_2)];
 z_3 = Theta2*transpose(a_2);
-
-
 h_theta =  sigmoid(z_3);
 
-int_val = -y.* transpose(log(h_theta)) - (1-y).* transpose(log(1-h_theta));
+int_val = -Y.* transpose(log(h_theta)) - (1-Y).* transpose(log(1-h_theta));
 
 
-fprintf(['Good VIBES 3'], m);
+p = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 
-J = (sum(int_val))/(m) ;
-
-
+J = sum(sum(int_val, 2))/m  + lambda*p/(2*m);
 
 
+sigma_3 = transpose(h_theta).-Y;
+sigma_2 = (sigma_3*Theta2).*sigmoidGradient([ones(size(z_2, 1), 1) z_2]);
+sigma_2 = sigma_2(:, 2:end);
 
 
+delta_1 = (transpose(sigma_2)*a_1);
+delta_2 = (transpose(sigma_3)*a_2);
 
 
+p_1 = (lambda/m)*[zeros(size(Theta1, 1), 1) Theta1(:, 2:end)];
+p_2 = (lambda/m)*[zeros(size(Theta2, 1), 1) Theta2(:, 2:end)];
 
-
-
-
-
-
-
-
+Theta1_grad = delta_1./m + p_1;
+Theta2_grad = delta_2./m + p_2;
 
 
 
