@@ -65,21 +65,25 @@ Theta2_grad = zeros(size(Theta2));
 
 
 a_1 = [ones(m, 1) X];
-z_2 = Theta1*transpose(a_1);
-a_2 = [ones(size(z2, 1), 1) sigmoid(z_2)];
+z_2 = transpose(Theta1*transpose(a_1));
+
+fprintf(['Good VIBES 1'], m);
+
+a_2 = [ones(size(z_2, 1), 1) sigmoid(z_2)];
 z_3 = Theta2*transpose(a_2);
-a_3 = [ones(size(z3, 1), 1) sigmoid(z_3)];
+
+
+fprintf(['Good VIBES 2'], m);
+
+a_3 =  sigmoid(z_3);
 
 h_theta = a_3
-
 int_val = -y.* transpose(log(h_theta)) - (1-y).* transpose(log(1-h_theta));
 
 
-fprintf(['Cost at parameters (loaded from ex4weights): %f '...
-         '\n(this value int_val)\n'], int_val);
+fprintf(['Good VIBES 3'], m);
 
-m = length(y);
-J = (sum(int_val))/(m);
+J = (sum(int_val))/(m) ;
 
 
 
