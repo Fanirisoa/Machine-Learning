@@ -66,9 +66,9 @@ Theta2_grad = zeros(size(Theta2));
 
 a_1 = [ones(m, 1) X];
 z_2 = Theta1*transpose(a_1);
-a_2 = [ones(size(z2, 1), 1) sigmoid(z2)];
+a_2 = [ones(size(z2, 1), 1) sigmoid(z_2)];
 z_3 = Theta2*transpose(a_2);
-a_3 = [ones(size(z3, 1), 1) sigmoid(z3)];
+a_3 = [ones(size(z3, 1), 1) sigmoid(z_3)];
 
 h_theta = a_3
 
