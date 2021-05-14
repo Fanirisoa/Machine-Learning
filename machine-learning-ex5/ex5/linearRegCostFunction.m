@@ -20,16 +20,11 @@ m = length(y);
 %
 
 
-fprintf(['size(theta): '], size(theta));
+h_theta = polyval(theta,X);
 
-
-
-transpose_theta = transpose(theta);
-h_theta = sigmoid(transpose(theta)*transpose(X));
-inter_val = ((h_theta - transpose(y))*(h_theta - transpose(y)))/(2*m)
+inter_val = ((h_theta.- y)*(h_theta.- y))/(2*m)
 delta = (lambda/(2*m))*(sum(transpose(theta)*theta));
 J = sum(inter_val) + delta;
-
 
 
 
