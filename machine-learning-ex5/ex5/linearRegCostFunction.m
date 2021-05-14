@@ -20,9 +20,11 @@ m = length(y);
 %
 
 
-h_theta = polyval(theta,X(:,2));
+h_theta = theta*X;
+
 
 inter_val = ((h_theta - y)*(h_theta - y))/(2*m);
+
 delta = (lambda/(2*m))*(sum(transpose(theta)*theta));
 J = sum(inter_val) + delta;
 
