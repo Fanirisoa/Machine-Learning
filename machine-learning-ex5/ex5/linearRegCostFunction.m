@@ -20,12 +20,12 @@ m = length(y);
 %
 
 
-h_theta = theta*X;
+h_theta = X*theta;
 
+inter_val = ((h_theta - y).^2)/(2*m);
 
-inter_val = ((h_theta - y)*(h_theta - y))/(2*m);
-
-delta = (lambda/(2*m))*(sum(transpose(theta)*theta));
+theta1 = [0 ; theta(2:end, :)];
+delta = (lambda/(2*m))*(sum(theta1.^2));
 J = sum(inter_val) + delta;
 
 
