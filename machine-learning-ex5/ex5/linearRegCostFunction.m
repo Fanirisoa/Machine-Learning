@@ -12,6 +12,8 @@ m = length(y); % number of training examples
 J = 0;
 grad = zeros(size(theta));
 m = length(y);
+p = size(X, 2);
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost and gradient of regularized linear 
 %               regression for a particular choice of theta.
@@ -22,13 +24,15 @@ m = length(y);
 
 h_theta = X*theta;
 
+
 inter_val = ((h_theta - y).^2)/(2*m);
 
 theta1 = [0 ; theta(2:end, :)];
 delta = (lambda/(2*m))*(sum(theta1.^2));
 J = sum(inter_val) + delta;
 
-
+% compute the derivative vector
+grad = transpose(X)*(h_theta - y)/m + (lambda/m)*theta1 ;
 
 
 
