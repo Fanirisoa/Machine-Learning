@@ -19,7 +19,11 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
-
+transpose_theta = transpose(theta);
+h_theta = sigmoid(transpose(theta)*transpose(X));
+inter_val = ((h_theta - transpose(y))*(h_theta - transpose(y)))/(2*m)
+m = length(y);
+J = sum(inter_val) ;
 
 
 
