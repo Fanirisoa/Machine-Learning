@@ -22,6 +22,9 @@ S = zeros(n);
 
 
 
+Sigma = (1/m)*(transpose(X)*X);
+[U, S, V]=svd(Sigma);
+
 
 
 
