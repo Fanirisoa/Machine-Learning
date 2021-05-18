@@ -22,10 +22,8 @@ sigma2 = zeros(n, 1);
 %
 
 
-
-
-
-
+mu = transpose(mean(X));
+sigma2 = transpose(var(X, 1));
 
 
 
